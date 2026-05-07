@@ -1,0 +1,250 @@
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { Maximize2, X, ChevronLeft, ChevronRight } from 'lucide-react';
+
+const projects = [
+  {
+    id: '01',
+    title: 'Academic Works',
+    type: 'Architecture & 3D',
+    coverImage: '/photo_2025-08-01_22-57-50.jpg',
+    colorCover: true,
+    images: [
+      { url: '/photo_2025-08-01_22-57-50.jpg', title: 'Exterior Visualization', type: '3D Render' },
+      { url: '/3D_final.jpg', title: 'Final Monolith', type: '3D Render' },
+      { url: '/section_done_1234.jpg', title: 'Section Detail I', type: 'Technical Drawing' },
+      { url: '/sec1_done.jpg', title: 'Section Detail II', type: 'Technical Drawing' },
+    ]
+  },
+  {
+    id: '02',
+    title: 'Urban Oasis',
+    type: 'Commercial Tower',
+    coverImage: '/photo_2_2025-10-07_06-05-40.jpg',
+    colorCover: true,
+    images: [
+      { url: '/photo_1_2025-10-07_06-05-40.jpg', title: 'Urban Oasis I', type: 'Commercial Tower' },
+      { url: '/photo_2_2025-10-07_06-05-40.jpg', title: 'Urban Oasis II', type: 'Commercial Tower' },
+      { url: '/photo_3_2025-10-07_06-05-40.jpg', title: 'Urban Oasis III', type: 'Commercial Tower' },
+      { url: '/photo_2025-08-12_22-57-40.jpg', title: 'Urban Oasis IV', type: 'Commercial Tower' }
+    ]
+  },
+  {
+    id: '03',
+    title: 'Jury Presentation',
+    type: 'Academic Review',
+    coverImage: '/jury_7 - Photo.jpg',
+    colorCover: true,
+    images: [
+      { url: '/jury_4 - Photo.jpg', title: 'Jury Presentation I', type: 'Academic Review' },
+      { url: '/jury_5 - Photo.jpg', title: 'Jury Presentation II', type: 'Academic Review' },
+      { url: '/jury_6 - Photo.jpg', title: 'Jury Presentation III', type: 'Academic Review' },
+      { url: '/jury_7 - Photo.jpg', title: 'Jury Presentation IV', type: 'Academic Review' }
+    ]
+  },
+  {
+    id: '04',
+    title: 'Design Explorations',
+    type: 'Conceptual Studies',
+    coverImage: '/Image(10).png',
+    colorCover: true,
+    images: [
+      { url: '/Scene 1(3).png', title: 'Concept Scene I', type: 'Conceptual Study' },
+      { url: '/Image(9) (2).png', title: 'Concept Visualization II', type: 'Conceptual Study' },
+      { url: '/Image(10).png', title: 'Concept Visualization III', type: 'Conceptual Study' },
+      { url: '/Image(12).png', title: 'Concept Visualization IV', type: 'Conceptual Study' },
+      { url: '/Image(17).png', title: 'Concept Visualization V', type: 'Conceptual Study' }
+    ]
+  }
+];
+
+export function Portfolio() {
+  const [lightbox, setLightbox] = useState<{ pId: number, iId: number } | null>(null);
+
+  // Handle keyboard navigation for lightbox
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!lightbox) return;
+      if (e.key === 'Escape') setLightbox(null);
+      if (e.key === 'ArrowLeft') handlePrev();
+      if (e.key === 'ArrowRight') handleNext();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [lightbox]);
+
+  const handleNext = () => {
+    if (lightbox !== null) {
+      const len = projects[lightbox.pId].images.length;
+      setLightbox({
+        pId: lightbox.pId,
+        iId: (lightbox.iId + 1) % len
+      });
+    }
+  };
+
+  const handlePrev = () => {
+    if (lightbox !== null) {
+      const len = projects[lightbox.pId].images.length;
+      setLightbox({
+        pId: lightbox.pId,
+        iId: (lightbox.iId - 1 + len) % len
+      });
+    }
+  };
+
+  return (
+    <section id="portfolio" className="py-32 px-6 md:px-12 max-w-7xl mx-auto border-t border-white/10">
+      
+      <div className="flex flex-col md:flex-row md:justify-between md:items-end mb-20">
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          className="font-display text-5xl md:text-7xl font-light tracking-tighter"
+        >
+          Selected Works
+        </motion.h2>
+        <motion.p 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="text-xs uppercase tracking-[0.2em] text-gray-500 mt-6 md:mt-0"
+        >
+          2020 — Present
+        </motion.p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
+        {projects.map((project, index) => {
+          return (
+          <motion.div 
+            key={project.id}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: index * 0.1, ease: 'easeOut' }}
+            className={`group ${index % 2 === 1 ? 'md:mt-32' : ''}`}
+          >
+            <div className="relative transition-transform duration-500 group-hover:-translate-y-2">
+              <div className={`overflow-hidden aspect-[3/2] bg-gray-900 relative`}>
+                <img 
+                  src={project.coverImage} 
+                  alt={project.title}
+                  className={`w-full h-full object-cover filter transition-transform duration-700 group-hover:scale-105 ${(project as any).colorCover ? '' : 'grayscale contrast-125'}`}
+                  referrerPolicy="no-referrer"
+                />
+                
+                {/* Maximize Button overlay */}
+                <button 
+                  onClick={() => setLightbox({ pId: index, iId: 0 })}
+                  className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  aria-label="View gallery"
+                >
+                  <div className="bg-white text-black p-4 rounded-full transform scale-75 group-hover:scale-100 transition-transform duration-500 ease-out flex items-center space-x-2">
+                    <Maximize2 size={24} strokeWidth={1.5} />
+                    {project.images.length > 1 && (
+                      <span className="font-sans text-xs font-semibold uppercase tracking-widest pl-2 border-l border-black/20">
+                        {project.images.length} Images
+                      </span>
+                    )}
+                  </div>
+                </button>
+              </div>
+              
+              {/* Metadata below the image */}
+              <div className="mt-6 flex justify-between items-baseline pointer-events-none">
+                <div>
+                  <h3 className="font-display font-medium text-xl md:text-3xl tracking-tight leading-none mb-2 text-white">
+                    {project.title}
+                  </h3>
+                  <p className="font-sans text-xs uppercase tracking-widest text-gray-400">
+                    {project.type}
+                  </p>
+                </div>
+                <div className="font-display text-3xl font-light text-gray-700">
+                  {project.id}
+                </div>
+              </div>
+            </div>
+          </motion.div>
+          );
+        })}
+      </div>
+
+      {/* Lightbox Modal */}
+      <AnimatePresence>
+        {lightbox && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-sm"
+          >
+            <button 
+              onClick={() => setLightbox(null)}
+              className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors z-50 p-2"
+              aria-label="Close lightbox"
+            >
+              <X size={32} strokeWidth={1} />
+            </button>
+            
+            {projects[lightbox.pId].images.length > 1 && (
+              <>
+                <button 
+                  onClick={handlePrev}
+                  className="absolute left-4 md:left-12 text-white/50 hover:text-white transition-colors z-50 p-4"
+                  aria-label="Previous image"
+                >
+                  <ChevronLeft size={48} strokeWidth={1} />
+                </button>
+
+                <button 
+                  onClick={handleNext}
+                  className="absolute right-4 md:right-12 text-white/50 hover:text-white transition-colors z-50 p-4"
+                  aria-label="Next image"
+                >
+                  <ChevronRight size={48} strokeWidth={1} />
+                </button>
+              </>
+            )}
+
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={lightbox.iId}
+                initial={{ opacity: 0, scale: 0.98 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 1.02 }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
+                className="w-full max-w-5xl max-h-[85vh] px-4 md:px-0 flex flex-col items-center justify-center"
+              >
+                <img 
+                  src={projects[lightbox.pId].images[lightbox.iId].url} 
+                  alt={projects[lightbox.pId].images[lightbox.iId].title}
+                  className="max-w-full max-h-[75vh] object-contain shadow-2xl"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="mt-6 text-center">
+                  <h4 className="font-display text-2xl tracking-tight text-white mb-1">
+                    {projects[lightbox.pId].images[lightbox.iId].title}
+                  </h4>
+                  <p className="font-sans text-xs uppercase tracking-widest text-gray-400">
+                    {projects[lightbox.pId].images[lightbox.iId].type}
+                  </p>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+            
+            {/* Slide counter */}
+            {projects[lightbox.pId].images.length > 1 && (
+              <div className="absolute bottom-8 left-1/2 -translate-x-1/2 font-sans tracking-[0.3em] text-xs text-gray-500">
+                {String(lightbox.iId + 1).padStart(2, '0')} / {String(projects[lightbox.pId].images.length).padStart(2, '0')}
+              </div>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </section>
+  );
+}
