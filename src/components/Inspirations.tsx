@@ -5,19 +5,19 @@ const inspirations = [
     name: 'Zaha Hadid',
     quote: 'Queen of the curve.',
     review: 'Her fluid, highly expressive forms continue to inspire my approach to spatial dynamics. Hadid taught us that buildings do not have to be rigid boxes; they can flow like liquid, carving the environment in breathless geometries that defy gravity.',
-    image: 'https://images.unsplash.com/photo-1549488344-c650cf5dfed1?q=80&w=2670&auto=format&fit=crop' // flowing modern curve
+    image: '/images.webp' 
   },
   {
     name: 'Tadao Ando',
     quote: 'Master of light and concrete.',
     review: 'His work teaches the profound impact of simplicity and raw materials. By manipulating geometric forms in harmony with natural elements like light and water, Ando creates minimalist spaces that evoke deep spiritual resonance.',
-    image: 'https://images.unsplash.com/photo-1542384701-c0e46eadef08?q=80&w=2574&auto=format&fit=crop' // concrete light
+    image: '/7d642d_34861048fef84d908e4d5414e1d1fe42~mv2.avif'
   },
   {
     name: 'Le Corbusier',
     quote: 'Pioneer of modernism.',
     review: 'The Five Points of Architecture remain foundational to my structural philosophy. Le Corbusier stripped architecture of its historical baggage, pushing it into the machine age with pure, functional, and revolutionary starkness.',
-    image: 'https://images.unsplash.com/photo-1566838965074-ceee8a86ad49?q=80&w=2670&auto=format&fit=crop' // brutalist standard
+    image: '/hemis_dadt01-2.webp'
   }
 ];
 
@@ -48,10 +48,12 @@ export function Inspirations() {
             {/* Image */}
             <div className="w-full md:w-1/2">
               <div className="aspect-[4/3] overflow-hidden">
-                <img 
+                <motion.img 
                   src={arch.image} 
                   alt={arch.name}
-                  className="w-full h-full object-cover filter grayscale contrast-125 select-none"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                  className="w-full h-full object-cover object-top filter grayscale contrast-125 select-none"
                   referrerPolicy="no-referrer"
                 />
               </div>

@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Maximize2, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Maximize2, X, ChevronLeft, ChevronRight, MapPin, Briefcase } from 'lucide-react';
 
 const projects = [
   {
     id: '01',
-    title: 'Academic Works',
+    title: 'Residential Building',
     type: 'Architecture & 3D',
+    location: 'Accra, Ghana',
+    company: 'Internship at MAFER PLC',
     coverImage: '/photo_2025-08-01_22-57-50.jpg',
     colorCover: true,
     images: [
@@ -18,8 +20,10 @@ const projects = [
   },
   {
     id: '02',
-    title: 'Urban Oasis',
+    title: 'Guest House',
     type: 'Commercial Tower',
+    location: 'Watamo, Kenya',
+    company: 'Internship at MAFER PLC',
     coverImage: '/photo_2_2025-10-07_06-05-40.jpg',
     colorCover: true,
     images: [
@@ -31,8 +35,26 @@ const projects = [
   },
   {
     id: '03',
-    title: 'Jury Presentation',
+    title: 'Educational Mall',
+    type: 'Interior Renders',
+    location: 'Addis Ababa, Ethiopia',
+    company: 'Integrated Design 2',
+    coverImage: '/ai-render-14206411.jpg',
+    colorCover: true,
+    images: [
+      { url: '/ai-render-14206285.jpg', title: 'Interior Render I', type: 'Interior Visualization' },
+      { url: '/ai-render-14206411.jpg', title: 'Interior Render II', type: 'Interior Visualization' },
+      { url: '/ai-render-14208037.jpg', title: 'Interior Render III', type: 'Interior Visualization' },
+      { url: '/ai-render-14208087.jpg', title: 'Interior Render IV', type: 'Interior Visualization' },
+      { url: '/ai-render-14208369.jpg', title: 'Interior Render V', type: 'Interior Visualization' }
+    ]
+  },
+  {
+    id: '04',
+    title: 'Apartment',
     type: 'Academic Review',
+    location: 'Addis Ababa, Ethiopia',
+    company: 'Integrated Design 1',
     coverImage: '/jury_7 - Photo.jpg',
     colorCover: true,
     images: [
@@ -43,9 +65,11 @@ const projects = [
     ]
   },
   {
-    id: '04',
-    title: 'Design Explorations',
+    id: '05',
+    title: 'Bakkafa Castle',
     type: 'Conceptual Studies',
+    location: 'Fasil Ghebbi, Gondar',
+    company: 'History of Architecture',
     coverImage: '/Image(10).png',
     colorCover: true,
     images: [
@@ -54,6 +78,55 @@ const projects = [
       { url: '/Image(10).png', title: 'Concept Visualization III', type: 'Conceptual Study' },
       { url: '/Image(12).png', title: 'Concept Visualization IV', type: 'Conceptual Study' },
       { url: '/Image(17).png', title: 'Concept Visualization V', type: 'Conceptual Study' }
+    ]
+  },
+  {
+    id: '06',
+    title: 'Architectural Visualization',
+    type: 'Recent Renders',
+    coverImage: '/Enscape_2025-04-25-21-34-10.png',
+    colorCover: true,
+    images: [
+      { url: '/Enscape_2025-04-25-21-22-14.png', title: 'Render View I', type: 'Architectural Visualization' },
+      { url: '/Enscape_2025-04-25-21-34-10.png', title: 'Render View II', type: 'Architectural Visualization' },
+      { url: '/Enscape_2025-04-26-03-19-45.png', title: 'Render View III', type: 'Architectural Visualization' },
+      { url: '/photo_2025-04-25_22-35-01.jpg', title: 'Render Details', type: 'Architectural Visualization' }
+    ]
+  },
+  {
+    id: '07',
+    title: 'Modern Architecture',
+    type: 'Exterior Vis',
+    coverImage: '/Enscape_2025-06-01-14-37-04.png',
+    colorCover: true,
+    images: [
+      { url: '/Enscape_2025-06-01-14-27-28.png', title: 'Exterior Angle I', type: 'Exterior Vis' },
+      { url: '/Enscape_2025-06-01-14-37-04.png', title: 'Exterior Angle II', type: 'Exterior Vis' },
+      { url: '/Enscape_2025-06-01-15-19-12.png', title: 'Exterior Angle III', type: 'Exterior Vis' },
+      { url: '/Enscape_2025-06-01-15-33-31.png', title: 'Exterior Angle IV', type: 'Exterior Vis' },
+      { url: '/Enscape_2025-06-01-15-37-08.png', title: 'Exterior Angle V', type: 'Exterior Vis' },
+      { url: '/Enscape_2025-06-01-15-48-07.png', title: 'Exterior Angle VI', type: 'Exterior Vis' },
+      { url: '/Enscape_2025-06-01-16-52-42.png', title: 'Exterior Angle VII', type: 'Exterior Vis' }
+    ]
+  },
+  {
+    id: '08',
+    title: 'Architectural Presentation',
+    type: 'Presentation & Plans',
+    coverImage: '/ap1.png',
+    colorCover: true,
+    images: [
+      { url: '/ap1.png', title: 'Presentation I', type: 'Architectural Plan' },
+      { url: '/ap 6.png', title: 'Presentation X', type: 'Architectural Plan' },
+      { url: '/ap 9.png', title: 'Presentation XI', type: 'Architectural Plan' },
+      { url: '/ap 1q.png', title: 'Presentation II', type: 'Architectural Plan' },
+      { url: '/ap 1w.png', title: 'Presentation V', type: 'Architectural Plan' },
+      { url: '/ap 1r.png', title: 'Presentation III', type: 'Architectural Plan' },
+      { url: '/ap 1t.png', title: 'Presentation IV', type: 'Architectural Plan' },
+      { url: '/ap 2y.png', title: 'Presentation IX', type: 'Architectural Plan' },
+      { url: '/ap 2p.png', title: 'Presentation VII', type: 'Architectural Plan' },
+      { url: '/ap 2i.png', title: 'Presentation VI', type: 'Architectural Plan' },
+      { url: '/ap 2u.png', title: 'Presentation VIII', type: 'Architectural Plan' }
     ]
   }
 ];
@@ -161,6 +234,22 @@ export function Portfolio() {
                   <p className="font-sans text-xs uppercase tracking-widest text-gray-400">
                     {project.type}
                   </p>
+                  {((project as any).location || (project as any).company) && (
+                    <div className="mt-3 flex flex-col md:flex-row md:items-center gap-2 md:gap-4 text-[10px] text-gray-400 font-sans tracking-[0.15em] uppercase">
+                      {(project as any).location && (
+                        <div className="flex items-center gap-1.5">
+                          <MapPin size={12} />
+                          <span>{(project as any).location}</span>
+                        </div>
+                      )}
+                      {(project as any).company && (
+                        <div className="flex items-center gap-1.5">
+                          <Briefcase size={12} />
+                          <span>{(project as any).company}</span>
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
                 <div className="font-display text-3xl font-light text-gray-700">
                   {project.id}

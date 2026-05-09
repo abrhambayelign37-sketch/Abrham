@@ -24,9 +24,14 @@ export function Hero() {
             className="flex flex-col items-center md:items-start"
           >
             <div className="h-[1px] w-24 bg-white/30 mb-8 md:ml-0 mx-auto"></div>
-            <p className="font-sans text-sm md:text-base tracking-[0.2em] uppercase text-red-500 font-medium mb-6">
+            <motion.p 
+              initial={{ opacity: 0, y: 10, filter: 'blur(5px)' }}
+              animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              transition={{ duration: 1, delay: 0.8, ease: 'easeOut' }}
+              className="font-sans text-sm md:text-base tracking-[0.2em] uppercase text-red-500 font-medium mb-6"
+            >
               Form • Function • Elegance
-            </p>
+            </motion.p>
             <p className="font-sans text-gray-400 leading-relaxed max-w-md mx-auto md:mx-0">
               4th-year architecture student at EIABC, passionate about minimalist design, spatial storytelling, and creating timeless experiences.
             </p>
@@ -49,7 +54,7 @@ export function Hero() {
               initial={{ scale: 1.2, y: 20 }}
               animate={{ scale: 1, y: 0 }}
               transition={{ duration: 1.8, ease: "easeOut", delay: 0.2 }}
-              src="/profile.jpg" 
+              src="/photo_2026-02-27_22-48-12.jpg" 
               alt="Abrham Bayelign" 
               className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700 ease-out hover:scale-105 opacity-90 group-hover:opacity-100" 
             />
