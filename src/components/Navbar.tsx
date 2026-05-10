@@ -29,7 +29,7 @@ export function Navbar() {
           isScrolled ? 'bg-black/90 backdrop-blur-md py-4' : 'bg-transparent py-6'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
+        <div className="max-w-[1600px] mx-auto px-6 md:px-16 lg:px-24 flex justify-between items-center">
           <a href="#home" className="text-xl font-display font-medium tracking-tight uppercase hover:opacity-75 transition-opacity">
             A·Bayelign
           </a>

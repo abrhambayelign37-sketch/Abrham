@@ -4,7 +4,17 @@ export function Hero() {
   return (
     <section id="home" className="min-h-screen w-full flex items-center justify-center relative overflow-hidden pt-24 pb-20 md:pt-0 md:pb-0">
       
-      <div className="z-10 px-6 md:px-12 max-w-7xl mx-auto w-full flex flex-col-reverse md:flex-row items-center justify-center gap-12 md:gap-24">
+      {/* Background Image */}
+      <motion.div 
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-40"
+        style={{ backgroundImage: 'url("/ai-render-14206411.jpg")' }}
+        initial={{ scale: 1.1 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 20, repeat: Infinity, repeatType: "reverse", ease: "linear" }}
+      ></motion.div>
+      <div className="absolute inset-0 z-0 bg-gradient-to-b from-black/20 via-black/70 to-black"></div>
+
+      <div className="z-10 px-6 md:px-16 lg:px-24 max-w-[1600px] mx-auto w-full flex flex-col-reverse md:flex-row items-center justify-center gap-12 md:gap-24">
         
         <div className="flex flex-col items-center md:items-start text-center md:text-left w-full md:w-auto">
           <motion.div
@@ -32,31 +42,34 @@ export function Hero() {
             >
               Form • Function • Elegance
             </motion.p>
-            <p className="font-sans text-gray-400 leading-relaxed max-w-md mx-auto md:mx-0">
+            <p className="font-sans text-gray-400 leading-relaxed max-w-lg mx-auto md:mx-0">
               4th-year architecture student at EIABC, passionate about minimalist design, spatial storytelling, and creating timeless experiences.
             </p>
           </motion.div>
         </div>
 
          <motion.div
-           initial={{ opacity: 0, x: 20 }}
-           animate={{ opacity: 1, x: 0 }}
-           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+           initial={{ opacity: 0, y: -50 }}
+           animate={{ opacity: 1, y: [-10, 10, -10] }}
+           transition={{ 
+             y: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+             opacity: { duration: 1.2, ease: "easeOut" }
+           }}
            className="w-56 h-56 md:w-96 md:h-[500px] flex-shrink-0 relative group mt-8 md:mt-0"
         >
           <motion.div 
             className="w-full h-full overflow-hidden border border-white/20 bg-gray-900 rounded-full md:rounded-none relative z-10"
-            initial={{ clipPath: 'inset(100% 0 0 0)' }}
-            animate={{ clipPath: 'inset(0% 0 0 0)' }}
+            initial={{ clipPath: 'inset(0 0 100% 0)' }}
+            animate={{ clipPath: 'inset(0 0 0 0)' }}
             transition={{ duration: 1.5, ease: [0.77, 0, 0.175, 1], delay: 0.2 }}
           >
             <motion.img 
-              initial={{ scale: 1.2, y: 20 }}
+              initial={{ scale: 1.2, y: -40 }}
               animate={{ scale: 1, y: 0 }}
               transition={{ duration: 1.8, ease: "easeOut", delay: 0.2 }}
               src="/photo_2026-02-27_22-48-12.jpg" 
               alt="Abrham Bayelign" 
-              className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700 ease-out hover:scale-105 opacity-90 group-hover:opacity-100" 
+              className="w-full h-full object-cover filter grayscale hover:grayscale-0 group-hover:grayscale-0 transition-all duration-700 ease-out hover:scale-105 opacity-90 hover:opacity-100 group-hover:opacity-100" 
             />
             {/* Minimalist overlay frame effect */}
             <div className="absolute inset-4 border border-white/20 pointer-events-none opacity-0 group-hover:opacity-100 transition-all duration-700 scale-95 group-hover:scale-100 hidden md:block rounded-full md:rounded-none"></div>

@@ -2,7 +2,7 @@ import { motion } from 'motion/react';
 
 export function About() {
   return (
-    <section id="about" className="py-32 px-6 md:px-12 max-w-7xl mx-auto border-t border-white/10">
+    <section id="about" className="py-32 px-6 md:px-16 lg:px-24 max-w-[1600px] mx-auto border-t border-white/10">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-center">
         
         {/* Abstract/architectural image */}

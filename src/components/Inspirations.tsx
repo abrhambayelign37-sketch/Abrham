@@ -23,7 +23,7 @@ const inspirations = [
 
 export function Inspirations() {
   return (
-    <section id="inspirations" className="py-32 px-6 md:px-12 max-w-7xl mx-auto border-t border-white/10">
+    <section id="inspirations" className="py-32 px-6 md:px-16 lg:px-24 max-w-[1600px] mx-auto border-t border-white/10">
       <div className="mb-24">
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}

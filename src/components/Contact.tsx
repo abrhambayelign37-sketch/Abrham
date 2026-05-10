@@ -3,7 +3,7 @@ import { ArrowRight } from 'lucide-react';
 
 export function Contact() {
   return (
-    <section id="contact" className="py-32 px-6 md:px-12 max-w-7xl mx-auto border-t border-white/10">
+    <section id="contact" className="py-32 px-6 md:px-16 lg:px-24 max-w-[1600px] mx-auto border-t border-white/10">
       <div className="flex flex-col md:flex-row gap-16 md:gap-24">
         
         {/* Left Column */}
@@ -32,14 +32,17 @@ export function Contact() {
             </div>
             <div>
               <span className="block text-white mb-1">Inquiries</span>
-              <a href="mailto:abrhambayelign380@gmail.com" className="hover:text-white transition-colors">
-                abrhambayelign380@gmail.com
+              <a href="mailto:abrhambayelign62@gmail.com" className="hover:text-white transition-colors block mb-2">
+                abrhambayelign62@gmail.com
+              </a>
+              <a href="tel:+251951537164" className="hover:text-white transition-colors block">
+                +251 95 153 7164
               </a>
             </div>
             <div>
               <span className="block text-white mb-1">Social</span>
               <div className="flex space-x-6 mt-2">
-                <a href="#" className="hover:text-white transition-colors">Instagram</a>
+                <a href="https://instagram.com/bsfa_m" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Instagram (@bsfa_m)</a>
                 <a href="#" className="hover:text-white transition-colors">LinkedIn</a>
                 <a href="#" className="hover:text-white transition-colors">Pinterest</a>
               </div>

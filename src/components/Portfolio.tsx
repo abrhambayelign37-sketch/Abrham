@@ -42,11 +42,11 @@ const projects = [
     coverImage: '/ai-render-14206411.jpg',
     colorCover: true,
     images: [
-      { url: '/ai-render-14206285.jpg', title: 'Interior Render I', type: 'Interior Visualization' },
-      { url: '/ai-render-14206411.jpg', title: 'Interior Render II', type: 'Interior Visualization' },
-      { url: '/ai-render-14208037.jpg', title: 'Interior Render III', type: 'Interior Visualization' },
-      { url: '/ai-render-14208087.jpg', title: 'Interior Render IV', type: 'Interior Visualization' },
-      { url: '/ai-render-14208369.jpg', title: 'Interior Render V', type: 'Interior Visualization' }
+      { url: '/ai-render-14206411.jpg', title: 'Interior Render I', type: 'Interior Visualization' },
+      { url: '/ai-render-14208037.jpg', title: 'Interior Render II', type: 'Interior Visualization' },
+      { url: '/ai-render-14208176.jpg', title: 'Interior Render III', type: 'Interior Visualization' },
+      { url: '/ai-render-14208369.jpg', title: 'Interior Render IV', type: 'Interior Visualization' },
+      { url: '/1777178985183.png', title: 'Interior Render V', type: 'Interior Visualization' }
     ]
   },
   {
@@ -82,8 +82,10 @@ const projects = [
   },
   {
     id: '06',
-    title: 'Architectural Visualization',
-    type: 'Recent Renders',
+    title: 'Landscape Design',
+    type: 'Re-imagining White House',
+    location: 'Addis Ababa, Ethiopia',
+    company: 'Eiabc, Seminar Project',
     coverImage: '/Enscape_2025-04-25-21-34-10.png',
     colorCover: true,
     images: [
@@ -95,8 +97,10 @@ const projects = [
   },
   {
     id: '07',
-    title: 'Modern Architecture',
-    type: 'Exterior Vis',
+    title: 'Commercial Mall',
+    type: 'Interface',
+    location: 'Addis Ababa, Ethiopia',
+    company: 'Architectural Design 2',
     coverImage: '/Enscape_2025-06-01-14-37-04.png',
     colorCover: true,
     images: [
@@ -111,8 +115,10 @@ const projects = [
   },
   {
     id: '08',
-    title: 'Architectural Presentation',
-    type: 'Presentation & Plans',
+    title: 'Appropriate Building',
+    type: 'Vernacular Architecture',
+    location: 'Somalia, Ethiopia',
+    company: 'Appropriate Design',
     coverImage: '/ap1.png',
     colorCover: true,
     images: [
@@ -167,7 +173,7 @@ export function Portfolio() {
   };
 
   return (
-    <section id="portfolio" className="py-32 px-6 md:px-12 max-w-7xl mx-auto border-t border-white/10">
+    <section id="portfolio" className="py-32 px-6 md:px-16 lg:px-24 max-w-[1600px] mx-auto border-t border-white/10">
       
       <div className="flex flex-col md:flex-row md:justify-between md:items-end mb-20">
         <motion.h2 
@@ -306,12 +312,12 @@ export function Portfolio() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 1.02 }}
                 transition={{ duration: 0.4, ease: "easeInOut" }}
-                className="w-full max-w-5xl max-h-[85vh] px-4 md:px-0 flex flex-col items-center justify-center"
+                className="w-full max-w-[1440px] max-h-[85vh] px-4 md:px-0 flex flex-col items-center justify-center"
               >
                 <img 
                   src={projects[lightbox.pId].images[lightbox.iId].url} 
                   alt={projects[lightbox.pId].images[lightbox.iId].title}
-                  className="max-w-full max-h-[75vh] object-contain shadow-2xl"
+                  className="max-w-full max-h-[80vh] object-contain shadow-2xl"
                   referrerPolicy="no-referrer"
                 />
                 <div className="mt-6 text-center">
