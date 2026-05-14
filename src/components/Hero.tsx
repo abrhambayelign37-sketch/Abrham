@@ -1,6 +1,9 @@
 import { motion } from 'motion/react';
+import { useNavigate } from 'react-router-dom';
+import { ProjectSearch } from './ProjectSearch';
 
 export function Hero() {
+  const navigate = useNavigate();
   return (
     <section id="home" className="min-h-screen w-full flex items-center justify-center relative overflow-hidden pt-24 pb-20 md:pt-0 md:pb-0">
       
@@ -49,39 +52,38 @@ export function Hero() {
         </div>
 
          <motion.div
-           initial={{ opacity: 0, y: -50 }}
-           animate={{ opacity: 1, y: [-10, 10, -10] }}
-           transition={{ 
-             y: { duration: 4, repeat: Infinity, ease: "easeInOut" },
-             opacity: { duration: 1.2, ease: "easeOut" }
-           }}
-           className="w-56 h-56 md:w-96 md:h-[500px] flex-shrink-0 relative group mt-8 md:mt-0"
+           drag
+           dragMomentum={false}
+           onClick={() => navigate('/about')}
+           initial={{ opacity: 0, y: 50 }}
+           animate={{ opacity: 1, y: 0 }}
+           transition={{ duration: 1.2, ease: "easeOut" }}
+           className="w-[200px] h-[250px] md:w-[250px] md:h-[320px] flex-shrink-0 relative group mt-8 md:mt-0 cursor-move z-50 shadow-2xl"
+           style={{ touchAction: 'none' }}
         >
-          <motion.div 
-            className="w-full h-full overflow-hidden border border-white/20 bg-gray-900 rounded-full md:rounded-none relative z-10"
-            initial={{ clipPath: 'inset(0 0 100% 0)' }}
-            animate={{ clipPath: 'inset(0 0 0 0)' }}
-            transition={{ duration: 1.5, ease: [0.77, 0, 0.175, 1], delay: 0.2 }}
-          >
-            <motion.img 
-              initial={{ scale: 1.2, y: -40 }}
-              animate={{ scale: 1, y: 0 }}
-              transition={{ duration: 1.8, ease: "easeOut", delay: 0.2 }}
-              src="/photo_2026-02-27_22-48-12.jpg" 
-              alt="Abrham Bayelign" 
-              className="w-full h-full object-cover filter grayscale hover:grayscale-0 group-hover:grayscale-0 transition-all duration-700 ease-out hover:scale-105 opacity-90 hover:opacity-100 group-hover:opacity-100" 
-            />
-            {/* Minimalist overlay frame effect */}
-            <div className="absolute inset-4 border border-white/20 pointer-events-none opacity-0 group-hover:opacity-100 transition-all duration-700 scale-95 group-hover:scale-100 hidden md:block rounded-full md:rounded-none"></div>
-          </motion.div>
-          
-          {/* Decorative shadow/offset element */}
-          <motion.div 
-             initial={{ opacity: 0, x: -10, y: -10 }}
-             animate={{ opacity: 1, x: 20, y: 20 }}
-             transition={{ duration: 1.5, delay: 0.8, ease: "easeOut" }}
-             className="absolute inset-0 border border-white/10 -z-10 rounded-full md:rounded-none hidden md:block transition-transform duration-700 group-hover:translate-x-6 group-hover:translate-y-6"
-          ></motion.div>
+          <div className="block w-full h-full relative cursor-pointer group" onDragStart={(e) => e.preventDefault()}>
+            <motion.div 
+              className="w-full h-full overflow-hidden bg-gray-900 relative z-10"
+              initial={{ clipPath: 'inset(100% 0 0 0)' }}
+              animate={{ clipPath: 'inset(0 0 0 0)' }}
+              transition={{ duration: 1.5, ease: [0.77, 0, 0.175, 1], delay: 0.2 }}
+            >
+              <motion.img 
+                initial={{ scale: 1.1, y: -20 }}
+                animate={{ scale: 1, y: 0 }}
+                transition={{ duration: 1.8, ease: "easeOut", delay: 0.2 }}
+                src="/photo_2026-02-27_22-48-12.jpg" 
+                alt="Abrham Bayelign" 
+                className="w-full h-full object-cover filter grayscale hover:grayscale-0 group-hover:grayscale-0 transition-all duration-700 ease-out hover:scale-[1.02] opacity-90 hover:opacity-100 group-hover:opacity-100" 
+              />
+            </motion.div>
+            
+            {/* Dark text box at the bottom like Zaha website */}
+            <div className="absolute -bottom-4 md:-bottom-6 left-1/2 -translate-x-1/2 w-[90%] bg-black text-white p-3 md:p-4 z-20 transition-transform duration-500 ease-out group-hover:-translate-y-2">
+              <h3 className="font-sans text-sm md:text-base font-medium tracing-wide m-0">Abrham Bayelign</h3>
+              <p className="font-sans text-[10px] md:text-xs text-gray-400 mt-1 m-0">Architecture Student at EIABC</p>
+            </div>
+          </div>
         </motion.div>
 
       </div>
@@ -96,6 +98,9 @@ export function Hero() {
         <span className="text-xs uppercase tracking-widest mb-4 opacity-50 hidden md:block">Scroll</span>
         <div className="w-[1px] h-12 md:h-16 bg-gradient-to-b from-white/50 to-transparent"></div>
       </motion.div>
+
+      {/* Floating Project Search */}
+      <ProjectSearch />
     </section>
   );
 }

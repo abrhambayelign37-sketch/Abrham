@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Maximize2, X, ChevronLeft, ChevronRight, MapPin, Briefcase } from 'lucide-react';
 
-const projects = [
+export const projects = [
   {
     id: '01',
     title: 'Residential Building',
@@ -149,7 +149,22 @@ export function Portfolio() {
       if (e.key === 'ArrowRight') handleNext();
     };
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+
+    // Listen for custom event from ProjectSearch
+    const handleOpenLightbox = (e: Event) => {
+      const customEvent = e as CustomEvent<{ id: string }>;
+      const { id } = customEvent.detail;
+      const index = projects.findIndex(p => p.id === id);
+      if (index !== -1) {
+        setLightbox({ pId: index, iId: 0 });
+      }
+    };
+    window.addEventListener('openProjectLightbox', handleOpenLightbox);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('openProjectLightbox', handleOpenLightbox);
+    };
   }, [lightbox]);
 
   const handleNext = () => {
@@ -199,6 +214,7 @@ export function Portfolio() {
           return (
           <motion.div 
             key={project.id}
+            id={`project-${project.id}`}
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
