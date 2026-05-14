@@ -36,13 +36,13 @@ export function ProjectSearch() {
     <motion.div
       drag
       dragMomentum={false}
-      className="absolute z-[100] right-4 md:right-12 lg:right-[10%] bottom-4 md:bottom-8 lg:bottom-12 bg-black border border-white/10 shadow-2xl overflow-hidden cursor-move w-64 text-sm font-sans"
+      className="absolute z-[100] right-4 md:right-12 lg:right-[10%] bottom-4 md:bottom-8 lg:bottom-12 bg-black border border-white/10 shadow-2xl overflow-hidden cursor-move min-w-[200px] w-64 min-h-[0] text-sm font-sans resize flex flex-col"
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ delay: 1, duration: 0.5 }}
       style={{ touchAction: 'none' }}
     >
-      <div className="flex justify-between items-center p-2 px-3 border-b border-white/10 bg-black/40">
+      <div className="flex justify-between items-center p-2 px-3 border-b border-white/10 bg-black/40 shrink-0">
         <span className="text-[10px] uppercase tracking-widest text-gray-300 pointer-events-none">Project Search</span>
         <button 
           onClick={() => setIsMinimized(!isMinimized)}
@@ -60,10 +60,10 @@ export function ProjectSearch() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="overflow-hidden"
+            className="overflow-hidden flex flex-col h-full"
           >
-            <div onPointerDown={(e) => e.stopPropagation()} className="cursor-auto">
-              <div className="flex bg-white text-black p-0.5">
+            <div onPointerDown={(e) => e.stopPropagation()} className="cursor-auto flex flex-col h-full">
+              <div className="flex bg-white text-black p-0.5 shrink-0">
                 <input 
                   type="text" 
                   placeholder="Search..." 
@@ -77,13 +77,13 @@ export function ProjectSearch() {
                       handleScrollTo(filteredProjects[0].id);
                     }
                   }}
-                  className="bg-gray-200 hover:bg-gray-300 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider transition-colors"
+                  className="bg-gray-200 hover:bg-gray-300 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider transition-colors shrink-0"
                 >
                   Go
                 </button>
               </div>
 
-              <div className="max-h-52 overflow-y-auto custom-scrollbar">
+              <div className="flex-1 overflow-y-auto custom-scrollbar min-h-[100px]">
                 {filteredProjects.length > 0 ? (
                   <ul className="py-1">
                     {filteredProjects.map((project) => (

@@ -58,7 +58,7 @@ export function Hero() {
            initial={{ opacity: 0, y: 50 }}
            animate={{ opacity: 1, y: 0 }}
            transition={{ duration: 1.2, ease: "easeOut" }}
-           className="w-[200px] h-[250px] md:w-[250px] md:h-[320px] flex-shrink-0 relative group mt-8 md:mt-0 cursor-move z-50 shadow-2xl"
+           className="w-[200px] h-[250px] md:w-[250px] md:h-[320px] flex-shrink-0 relative group mt-8 md:mt-0 cursor-move z-50 shadow-2xl resize overflow-hidden"
            style={{ touchAction: 'none' }}
         >
           <div className="block w-full h-full relative cursor-pointer group" onDragStart={(e) => e.preventDefault()}>
