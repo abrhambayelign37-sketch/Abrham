@@ -37,14 +37,38 @@ export function Hero() {
             className="flex flex-col items-center md:items-start"
           >
             <div className="h-[1px] w-24 bg-white/30 mb-8 md:ml-0 mx-auto"></div>
-            <motion.p 
-              initial={{ opacity: 0, y: 10, filter: 'blur(5px)' }}
-              animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-              transition={{ duration: 1, delay: 0.8, ease: 'easeOut' }}
-              className="font-sans text-sm md:text-base tracking-[0.2em] uppercase text-red-500 font-medium mb-6"
-            >
-              Form • Function • Elegance
-            </motion.p>
+            <div className="relative mb-10 h-8 w-[320px] mx-auto md:-ml-2" style={{ perspective: '1000px' }}>
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1.5, delay: 0.8 }}
+                className="w-full h-full relative"
+              >
+                <motion.div
+                  animate={{ rotateY: [0, -360] }}
+                  transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+                  className="w-full h-full absolute inset-0 text-center md:text-left"
+                  style={{ transformStyle: 'preserve-3d', transformOrigin: 'center center' }}
+                >
+                  {[0, 120, 240].map((rotation, i) => (
+                    <div
+                      key={i}
+                      className="absolute inset-0 flex items-center justify-center md:justify-start px-2 font-sans text-[13px] md:text-base tracking-[0.2em] uppercase text-red-500 font-medium whitespace-nowrap"
+                      style={{
+                        transform: `rotateY(${rotation}deg) translateZ(150px)`,
+                        backfaceVisibility: 'hidden',
+                      }}
+                    >
+                      <span className="drop-shadow-[0_0_10px_rgba(239,68,68,0.7)]">Form</span>
+                      <span className="opacity-40 text-[10px] mx-3 md:mx-4">●</span>
+                      <span className="drop-shadow-[0_0_10px_rgba(239,68,68,0.7)]">Function</span>
+                      <span className="opacity-40 text-[10px] mx-3 md:mx-4">●</span>
+                      <span className="drop-shadow-[0_0_10px_rgba(239,68,68,0.7)]">Elegance</span>
+                    </div>
+                  ))}
+                </motion.div>
+              </motion.div>
+            </div>
             <p className="font-sans text-gray-400 leading-relaxed max-w-lg mx-auto md:mx-0">
               4th-year architecture student at EIABC, passionate about minimalist design, spatial storytelling, and creating timeless experiences.
             </p>
