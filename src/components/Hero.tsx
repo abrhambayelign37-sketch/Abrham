@@ -9,11 +9,28 @@ export function Hero() {
       
       {/* Background Image */}
       <motion.div 
-        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-40"
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: 'url("/ai-render-14206411.jpg")' }}
-        initial={{ scale: 1.1 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 20, repeat: Infinity, repeatType: "reverse", ease: "linear" }}
+        initial={{ scale: 1.1, opacity: 0, filter: 'brightness(1)' }}
+        animate={{ 
+          scale: 1,
+          opacity: [0, 0.8, 0.1, 1, 0.3, 0.4, 0.6, 0.4],
+          filter: [
+            'brightness(1)', 
+            'brightness(1.5)', 
+            'brightness(0.8)', 
+            'brightness(2)', 
+            'brightness(1)', 
+            'brightness(1)', 
+            'brightness(1.3)', 
+            'brightness(1)'
+          ]
+        }}
+        transition={{ 
+          scale: { duration: 30, repeat: Infinity, repeatType: "reverse", ease: "linear" },
+          opacity: { duration: 20, repeat: Infinity, times: [0, 0.02, 0.04, 0.06, 0.08, 0.1, 0.5, 1], ease: "easeInOut" },
+          filter: { duration: 20, repeat: Infinity, times: [0, 0.02, 0.04, 0.06, 0.08, 0.1, 0.5, 1], ease: "easeInOut" }
+        }}
       ></motion.div>
       <div className="absolute inset-0 z-0 bg-gradient-to-b from-black/20 via-black/70 to-black"></div>
 
