@@ -11,7 +11,7 @@ const inspirations = [
     name: 'Tadao Ando',
     quote: 'Master of light and concrete.',
     review: 'His work teaches the profound impact of simplicity and raw materials. By manipulating geometric forms in harmony with natural elements like light and water, Ando creates minimalist spaces that evoke deep spiritual resonance.',
-    image: '/7d642d_34861048fef84d908e4d5414e1d1fe42~mv2.avif'
+    image: '/7d642d_34861048fef84d908e4d5414e1d1fe42~mv2-1.avif'
   },
   {
     name: 'Le Corbusier',
