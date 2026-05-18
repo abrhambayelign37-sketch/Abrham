@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import { Link } from 'react-router-dom';
 
 export function About() {
   return (
@@ -62,6 +63,12 @@ export function About() {
                 <span className="text-white">Based In</span>
                 <span>Addis Ababa</span>
               </div>
+            </div>
+            
+            <div className="pt-8 pt-4">
+              <Link to="/about" className="inline-flex border border-white/20 px-6 py-3 uppercase text-xs tracking-[0.2em] hover:bg-white hover:text-black transition-colors duration-300">
+                Full Profile
+              </Link>
             </div>
           </motion.div>
         </div>

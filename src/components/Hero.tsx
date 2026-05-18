@@ -70,17 +70,17 @@ export function Hero() {
                   {[0, 120, 240].map((rotation, i) => (
                     <div
                       key={i}
-                      className="absolute inset-0 flex items-center justify-center md:justify-start px-2 font-sans text-[13px] md:text-base tracking-[0.2em] uppercase text-red-500 font-medium whitespace-nowrap"
+                      className="absolute inset-0 flex items-center justify-center md:justify-start px-2 font-sans text-[13px] md:text-base tracking-[0.2em] uppercase text-orange-500 font-medium whitespace-nowrap"
                       style={{
                         transform: `rotateY(${rotation}deg) translateZ(150px)`,
                         backfaceVisibility: 'hidden',
                       }}
                     >
-                      <span className="drop-shadow-[0_0_10px_rgba(239,68,68,0.7)]">Form</span>
+                      <span className="drop-shadow-[0_0_10px_rgba(249,115,22,0.7)]">Form</span>
                       <span className="opacity-40 text-[10px] mx-3 md:mx-4">●</span>
-                      <span className="drop-shadow-[0_0_10px_rgba(239,68,68,0.7)]">Function</span>
+                      <span className="drop-shadow-[0_0_10px_rgba(249,115,22,0.7)]">Function</span>
                       <span className="opacity-40 text-[10px] mx-3 md:mx-4">●</span>
-                      <span className="drop-shadow-[0_0_10px_rgba(239,68,68,0.7)]">Elegance</span>
+                      <span className="drop-shadow-[0_0_10px_rgba(249,115,22,0.7)]">Elegance</span>
                     </div>
                   ))}
                 </motion.div>

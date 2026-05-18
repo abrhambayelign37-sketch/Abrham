@@ -23,22 +23,17 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Custom selection */
-::selection {
-  background: var(--color-white);
-  color: var(--color-black);
+/* Custom scrollbar for inner app container */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
 }
-
-/* Hide scrollbar for cleaner look if desired, but default is fine */
-::-webkit-scrollbar {
-  width: 8px;
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
 }
-::-webkit-scrollbar-track {
-  background: var(--color-black);
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
 }
-::-webkit-scrollbar-thumb {
-  background: #333;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(249, 115, 22, 0.5);
 }

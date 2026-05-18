@@ -137,6 +137,8 @@ export const projects = [
   }
 ];
 
+import { createPortal } from 'react-dom';
+
 export function Portfolio() {
   const [lightbox, setLightbox] = useState<{ pId: number, iId: number } | null>(null);
 
@@ -188,7 +190,7 @@ export function Portfolio() {
   };
 
   return (
-    <section id="portfolio" className="py-32 px-6 md:px-16 lg:px-24 max-w-[1600px] mx-auto border-t border-white/10">
+    <section id="projects" className="py-32 px-6 md:px-16 lg:px-24 max-w-[1600px] mx-auto border-t border-white/10">
       
       <div className="flex flex-col md:flex-row md:justify-between md:items-end mb-20">
         <motion.h2 
@@ -215,14 +217,18 @@ export function Portfolio() {
           <motion.div 
             key={project.id}
             id={`project-${project.id}`}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, scale: 0.95, y: 60, rotateX: 8 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0, rotateX: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, delay: index * 0.1, ease: 'easeOut' }}
+            transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+            style={{ transformPerspective: 1200 }}
             className={`group ${index % 2 === 1 ? 'md:mt-32' : ''}`}
           >
             <div className="relative transition-transform duration-500 group-hover:-translate-y-2">
-              <div className={`overflow-hidden aspect-[3/2] bg-gray-900 relative`}>
+              <div className={`overflow-hidden aspect-[3/2] bg-[#0a0a0a] relative rounded-2xl border border-white/10 shadow-[0_0_30px_rgba(249,115,22,0.1)] group-hover:shadow-[0_0_60px_rgba(249,115,22,0.25)] group-hover:border-orange-500/30 transition-all duration-500`}>
+                {/* Glowing top line */}
+                <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-orange-500 to-transparent opacity-30 group-hover:opacity-100 transition-opacity duration-500 z-20" />
+                
                 <img 
                   src={project.coverImage} 
                   alt={project.title}
@@ -284,78 +290,81 @@ export function Portfolio() {
       </div>
 
       {/* Lightbox Modal */}
-      <AnimatePresence>
-        {lightbox && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-sm"
-          >
-            <button 
-              onClick={() => setLightbox(null)}
-              className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors z-50 p-2"
-              aria-label="Close lightbox"
+      {createPortal(
+        <AnimatePresence>
+          {lightbox && (
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/95 backdrop-blur-sm"
             >
-              <X size={32} strokeWidth={1} />
-            </button>
-            
-            {projects[lightbox.pId].images.length > 1 && (
-              <>
-                <button 
-                  onClick={handlePrev}
-                  className="absolute left-4 md:left-12 text-white/50 hover:text-white transition-colors z-50 p-4"
-                  aria-label="Previous image"
-                >
-                  <ChevronLeft size={48} strokeWidth={1} />
-                </button>
-
-                <button 
-                  onClick={handleNext}
-                  className="absolute right-4 md:right-12 text-white/50 hover:text-white transition-colors z-50 p-4"
-                  aria-label="Next image"
-                >
-                  <ChevronRight size={48} strokeWidth={1} />
-                </button>
-              </>
-            )}
-
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={lightbox.iId}
-                initial={{ opacity: 0, scale: 0.98 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 1.02 }}
-                transition={{ duration: 0.4, ease: "easeInOut" }}
-                className="w-full max-w-[1440px] max-h-[85vh] px-4 md:px-0 flex flex-col items-center justify-center"
+              <button 
+                onClick={() => setLightbox(null)}
+                className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors z-50 p-2"
+                aria-label="Close lightbox"
               >
-                <img 
-                  src={projects[lightbox.pId].images[lightbox.iId].url} 
-                  alt={projects[lightbox.pId].images[lightbox.iId].title}
-                  className="max-w-full max-h-[80vh] object-contain shadow-2xl"
-                  referrerPolicy="no-referrer"
-                />
-                <div className="mt-6 text-center">
-                  <h4 className="font-display text-2xl tracking-tight text-white mb-1">
-                    {projects[lightbox.pId].images[lightbox.iId].title}
-                  </h4>
-                  <p className="font-sans text-xs uppercase tracking-widest text-gray-400">
-                    {projects[lightbox.pId].images[lightbox.iId].type}
-                  </p>
+                <X size={32} strokeWidth={1} />
+              </button>
+              
+              {projects[lightbox.pId].images.length > 1 && (
+                <>
+                  <button 
+                    onClick={handlePrev}
+                    className="absolute left-4 md:left-12 text-white/50 hover:text-white transition-colors z-50 p-4"
+                    aria-label="Previous image"
+                  >
+                    <ChevronLeft size={48} strokeWidth={1} />
+                  </button>
+
+                  <button 
+                    onClick={handleNext}
+                    className="absolute right-4 md:right-12 text-white/50 hover:text-white transition-colors z-50 p-4"
+                    aria-label="Next image"
+                  >
+                    <ChevronRight size={48} strokeWidth={1} />
+                  </button>
+                </>
+              )}
+
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={lightbox.iId}
+                  initial={{ opacity: 0, scale: 0.98 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 1.02 }}
+                  transition={{ duration: 0.4, ease: "easeInOut" }}
+                  className="w-full max-w-[1440px] max-h-[85vh] px-4 md:px-0 flex flex-col items-center justify-center"
+                >
+                  <img 
+                    src={projects[lightbox.pId].images[lightbox.iId].url} 
+                    alt={projects[lightbox.pId].images[lightbox.iId].title}
+                    className="max-w-full max-h-[80vh] object-contain shadow-2xl"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="mt-6 text-center">
+                    <h4 className="font-display text-2xl tracking-tight text-white mb-1">
+                      {projects[lightbox.pId].images[lightbox.iId].title}
+                    </h4>
+                    <p className="font-sans text-xs uppercase tracking-widest text-gray-400">
+                      {projects[lightbox.pId].images[lightbox.iId].type}
+                    </p>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+              
+              {/* Slide counter */}
+              {projects[lightbox.pId].images.length > 1 && (
+                <div className="absolute bottom-8 left-1/2 -translate-x-1/2 font-sans tracking-[0.3em] text-xs text-gray-500">
+                  {String(lightbox.iId + 1).padStart(2, '0')} / {String(projects[lightbox.pId].images.length).padStart(2, '0')}
                 </div>
-              </motion.div>
-            </AnimatePresence>
-            
-            {/* Slide counter */}
-            {projects[lightbox.pId].images.length > 1 && (
-              <div className="absolute bottom-8 left-1/2 -translate-x-1/2 font-sans tracking-[0.3em] text-xs text-gray-500">
-                {String(lightbox.iId + 1).padStart(2, '0')} / {String(projects[lightbox.pId].images.length).padStart(2, '0')}
-              </div>
-            )}
-          </motion.div>
-        )}
-      </AnimatePresence>
+              )}
+            </motion.div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
     </section>
   );
 }
