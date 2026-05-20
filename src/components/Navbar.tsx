@@ -7,11 +7,16 @@ export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+    const scrollContainer = document.getElementById('main-scroll-container');
+    const handleScroll = (e: Event) => {
+      const target = e.target as HTMLElement;
+      setIsScrolled(target.scrollTop > 50);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    if (scrollContainer) {
+      scrollContainer.addEventListener('scroll', handleScroll);
+      return () => scrollContainer.removeEventListener('scroll', handleScroll);
+    }
   }, []);
 
   const navLinks = [

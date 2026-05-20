@@ -11,28 +11,27 @@ export function Hero() {
       <motion.div 
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: 'url("/ai-render-14206411.jpg")' }}
-        initial={{ scale: 1.1, opacity: 0, filter: 'brightness(1)' }}
+        initial={{ scale: 1.1, opacity: 0 }}
         animate={{ 
           scale: 1,
-          opacity: [0, 0.8, 0.1, 1, 0.3, 0.4, 0.6, 0.4],
-          filter: [
-            'brightness(1)', 
-            'brightness(1.5)', 
-            'brightness(0.8)', 
-            'brightness(2)', 
-            'brightness(1)', 
-            'brightness(1)', 
-            'brightness(1.3)', 
-            'brightness(1)'
-          ]
+          opacity: 0.4
         }}
         transition={{ 
           scale: { duration: 30, repeat: Infinity, repeatType: "reverse", ease: "linear" },
-          opacity: { duration: 20, repeat: Infinity, times: [0, 0.02, 0.04, 0.06, 0.08, 0.1, 0.5, 1], ease: "easeInOut" },
-          filter: { duration: 20, repeat: Infinity, times: [0, 0.02, 0.04, 0.06, 0.08, 0.1, 0.5, 1], ease: "easeInOut" }
+          opacity: { duration: 2, ease: "easeOut" }
         }}
       ></motion.div>
-      <div className="absolute inset-0 z-0 bg-gradient-to-b from-black/20 via-black/70 to-black"></div>
+
+      {/* Startup Strip Light Flicker Effect */}
+      <motion.div
+        className="absolute left-0 right-0 top-[40%] h-[2px] bg-white mix-blend-screen z-0 pointer-events-none"
+        style={{ boxShadow: '0 0 40px 15px rgba(249,115,22,0.8), 0 0 100px 40px rgba(249,115,22,0.4)' }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: [0, 1, 0.1, 1, 0.2, 1, 0.5, 0] }}
+        transition={{ duration: 5, times: [0, 0.1, 0.15, 0.25, 0.35, 0.45, 0.8, 1], ease: "linear" }}
+      />
+
+      <div className="absolute inset-0 z-0 bg-gradient-to-b from-black/20 via-black/70 to-black pointer-events-none"></div>
 
       <div className="z-10 px-6 md:px-16 lg:px-24 max-w-[1600px] mx-auto w-full flex flex-col-reverse md:flex-row items-center justify-center gap-12 md:gap-24">
         
@@ -95,7 +94,7 @@ export function Hero() {
               ]
             }}
             transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-            className="absolute -inset-4 md:-inset-6 border border-orange-500/30 z-0 bg-orange-500/5 shadow-[0_0_40px_rgba(249,115,22,0.15)] group-hover:border-orange-500/50 group-hover:shadow-[0_0_60px_rgba(249,115,22,0.25)] transition-all duration-700"
+            className="absolute -inset-4 md:-inset-6 border border-orange-500/30 z-0 bg-orange-500/5 shadow-[0_0_40px_rgba(249,115,22,0.15)] group-hover:border-orange-500/50 group-hover:shadow-[0_0_60px_rgba(249,115,22,0.25)] transition-all duration-700 pointer-events-none"
           />
 
           <div className="block w-full h-full relative cursor-pointer group z-10" onDragStart={(e) => e.preventDefault()}>
@@ -106,7 +105,7 @@ export function Hero() {
               transition={{ duration: 1.5, ease: [0.77, 0, 0.175, 1], delay: 0.2 }}
             >
               <motion.div 
-                className="w-full h-full"
+                className="w-full h-full overflow-hidden"
                 animate={{ 
                   borderRadius: [
                     "50% 50% 50% 50% / 50% 50% 50% 50%",
@@ -115,20 +114,14 @@ export function Hero() {
                   ]
                 }}
                 transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-                style={{
-                  WebkitMaskImage: 'radial-gradient(circle at center 30%, black 40%, transparent 80%)',
-                  maskImage: 'radial-gradient(circle at center 30%, black 40%, transparent 80%)'
-                }}
               >
-                <div className="absolute inset-0 bg-orange-500/20 mix-blend-overlay z-20 group-hover:bg-transparent transition-colors duration-700 pointer-events-none"></div>
-                
                 <motion.img 
                   initial={{ scale: 1.1, y: -20 }}
                   animate={{ scale: 1, y: 0 }}
                   transition={{ duration: 1.8, ease: "easeOut", delay: 0.2 }}
                   src="/photo_2026-02-27_22-48-12.jpg" 
                   alt="Abrham Bayelign" 
-                  className="w-full h-full object-cover filter grayscale hover:grayscale-0 group-hover:grayscale-0 transition-all duration-700 ease-out hover:scale-[1.05] opacity-90 hover:opacity-100 group-hover:opacity-100 object-top mix-blend-luminosity hover:mix-blend-normal" 
+                  className="w-full h-full object-cover grayscale hover:grayscale-0 group-hover:grayscale-0 transition-all duration-700 ease-out hover:scale-[1.05] opacity-90 hover:opacity-100 group-hover:opacity-100 object-top" 
                 />
               </motion.div>
             </motion.div>
