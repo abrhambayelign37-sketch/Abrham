@@ -9,7 +9,7 @@ export function AboutProfile() {
   useEffect(() => {
     const timer = setInterval(() => {
       setStartIndex((prev) => (prev + 1) % projects.length);
-    }, 2000);
+    }, 5000);
     return () => clearInterval(timer);
   }, []);
 

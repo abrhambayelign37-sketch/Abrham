@@ -11,25 +11,14 @@ export function Hero() {
       <motion.div 
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: 'url("/ai-render-14206411.jpg")' }}
-        initial={{ scale: 1.1, opacity: 0, filter: 'brightness(1)' }}
+        initial={{ scale: 1.1, opacity: 0 }}
         animate={{ 
           scale: 1,
-          opacity: [0, 0.8, 0.1, 1, 0.3, 0.4, 0.6, 0.4],
-          filter: [
-            'brightness(1)', 
-            'brightness(1.5)', 
-            'brightness(0.8)', 
-            'brightness(2)', 
-            'brightness(1)', 
-            'brightness(1)', 
-            'brightness(1.3)', 
-            'brightness(1)'
-          ]
+          opacity: 0.4
         }}
         transition={{ 
-          scale: { duration: 30, repeat: Infinity, repeatType: "reverse", ease: "linear" },
-          opacity: { duration: 20, repeat: Infinity, times: [0, 0.02, 0.04, 0.06, 0.08, 0.1, 0.5, 1], ease: "easeInOut" },
-          filter: { duration: 20, repeat: Infinity, times: [0, 0.02, 0.04, 0.06, 0.08, 0.1, 0.5, 1], ease: "easeInOut" }
+          scale: { duration: 2, ease: "easeOut" },
+          opacity: { duration: 2, ease: "easeOut" }
         }}
       ></motion.div>
       <div className="absolute inset-0 z-0 bg-gradient-to-b from-black/20 via-black/70 to-black"></div>
@@ -54,36 +43,18 @@ export function Hero() {
             className="flex flex-col items-center md:items-start"
           >
             <div className="h-[1px] w-24 bg-white/30 mb-8 md:ml-0 mx-auto"></div>
-            <div className="relative mb-10 h-8 w-[320px] mx-auto md:-ml-2" style={{ perspective: '1000px' }}>
+            <div className="mb-10 mx-auto md:-ml-2">
               <motion.div 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1.5, delay: 0.8 }}
-                className="w-full h-full relative"
+                className="flex items-center justify-center md:justify-start px-2 font-sans text-[13px] md:text-base tracking-[0.2em] uppercase text-orange-500 font-medium whitespace-nowrap"
               >
-                <motion.div
-                  animate={{ rotateY: [0, -360] }}
-                  transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-                  className="w-full h-full absolute inset-0 text-center md:text-left"
-                  style={{ transformStyle: 'preserve-3d', transformOrigin: 'center center' }}
-                >
-                  {[0, 120, 240].map((rotation, i) => (
-                    <div
-                      key={i}
-                      className="absolute inset-0 flex items-center justify-center md:justify-start px-2 font-sans text-[13px] md:text-base tracking-[0.2em] uppercase text-orange-500 font-medium whitespace-nowrap"
-                      style={{
-                        transform: `rotateY(${rotation}deg) translateZ(150px)`,
-                        backfaceVisibility: 'hidden',
-                      }}
-                    >
-                      <span className="drop-shadow-[0_0_10px_rgba(249,115,22,0.7)]">Form</span>
-                      <span className="opacity-40 text-[10px] mx-3 md:mx-4">●</span>
-                      <span className="drop-shadow-[0_0_10px_rgba(249,115,22,0.7)]">Function</span>
-                      <span className="opacity-40 text-[10px] mx-3 md:mx-4">●</span>
-                      <span className="drop-shadow-[0_0_10px_rgba(249,115,22,0.7)]">Elegance</span>
-                    </div>
-                  ))}
-                </motion.div>
+                <span className="drop-shadow-[0_0_10px_rgba(249,115,22,0.7)]">Form</span>
+                <span className="opacity-40 text-[10px] mx-3 md:mx-4">●</span>
+                <span className="drop-shadow-[0_0_10px_rgba(249,115,22,0.7)]">Function</span>
+                <span className="opacity-40 text-[10px] mx-3 md:mx-4">●</span>
+                <span className="drop-shadow-[0_0_10px_rgba(249,115,22,0.7)]">Elegance</span>
               </motion.div>
             </div>
             <p className="font-sans text-gray-400 leading-relaxed max-w-lg mx-auto md:mx-0">

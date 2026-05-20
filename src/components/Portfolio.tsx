@@ -217,11 +217,10 @@ export function Portfolio() {
           <motion.div 
             key={project.id}
             id={`project-${project.id}`}
-            initial={{ opacity: 0, scale: 0.95, y: 60, rotateX: 8 }}
-            whileInView={{ opacity: 1, scale: 1, y: 0, rotateX: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-            style={{ transformPerspective: 1200 }}
+            transition={{ duration: 0.6, delay: index * 0.1, ease: 'easeOut' }}
             className={`group ${index % 2 === 1 ? 'md:mt-32' : ''}`}
           >
             <div className="relative transition-transform duration-500 group-hover:-translate-y-2">
