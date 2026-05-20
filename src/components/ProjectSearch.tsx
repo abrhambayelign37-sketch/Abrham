@@ -67,10 +67,10 @@ export function ProjectSearch() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsOpen(true)}
-            className="absolute z-50 right-4 bottom-16 md:right-6 md:bottom-24 bg-[#0a0a0a] border border-orange-500/30 text-white rounded-full px-5 py-3 shadow-[0_0_20px_rgba(249,115,22,0.2)] flex items-center gap-3 transition-colors hover:border-orange-500/60 hover:shadow-[0_0_30px_rgba(249,115,22,0.4)]"
+            className="absolute z-50 right-4 bottom-8 md:right-6 md:bottom-12 bg-[#0a0a0a] border border-orange-500/30 text-white rounded-full px-4 py-2 shadow-[0_0_20px_rgba(249,115,22,0.2)] flex items-center gap-2 transition-colors hover:border-orange-500/60"
           >
-            <Search size={18} className="text-orange-500" />
-            <span className="text-sm font-sans tracking-widest uppercase">
+            <Search size={16} className="text-orange-500" />
+            <span className="text-xs font-sans tracking-widest uppercase">
               Search Projects
             </span>
             <span className="text-[10px] text-gray-500 ml-2 border border-gray-700 rounded px-1.5 py-0.5 hidden md:block">

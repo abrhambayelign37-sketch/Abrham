@@ -8,6 +8,7 @@ import { useEffect, useRef } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
+import { Experience } from './components/Experience';
 import { Portfolio } from './components/Portfolio';
 import { Inspirations } from './components/Inspirations';
 import { Contact } from './components/Contact';
@@ -35,6 +36,7 @@ function HomePage() {
       <main>
         <Hero />
         <About />
+        <Experience />
         <Portfolio />
         <Inspirations />
         <Contact />
@@ -50,10 +52,12 @@ export default function App() {
   return (
     <div className="bg-[#050505] min-h-[100dvh] w-full text-white font-sans selection:bg-orange-500 selection:text-white p-0 md:p-12 lg:p-16 flex items-center justify-center relative overflow-hidden">
       
-      {/* Background ambient glow effect (static for better performance) */}
+      {/* Background ambient glow effect */}
       <div className="fixed inset-0 z-0 flex items-center justify-center pointer-events-none">
-        <div 
-          className="w-[70vw] h-[70vh] bg-orange-600/10 rounded-full blur-[100px] mix-blend-screen opacity-50"
+        <motion.div 
+          animate={{ scale: [1, 1.05, 1], opacity: [0.3, 0.4, 0.3] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          className="w-[70vw] h-[70vh] bg-orange-600/20 rounded-full blur-[150px] mix-blend-screen"
         />
       </div>
 

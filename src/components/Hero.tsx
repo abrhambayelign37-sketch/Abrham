@@ -11,14 +11,25 @@ export function Hero() {
       <motion.div 
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: 'url("/ai-render-14206411.jpg")' }}
-        initial={{ scale: 1.1, opacity: 0 }}
+        initial={{ scale: 1.1, opacity: 0, filter: 'brightness(1)' }}
         animate={{ 
           scale: 1,
-          opacity: 0.4
+          opacity: [0, 0.8, 0.1, 1, 0.3, 0.4, 0.6, 0.4],
+          filter: [
+            'brightness(1)', 
+            'brightness(1.5)', 
+            'brightness(0.8)', 
+            'brightness(2)', 
+            'brightness(1)', 
+            'brightness(1)', 
+            'brightness(1.3)', 
+            'brightness(1)'
+          ]
         }}
         transition={{ 
-          scale: { duration: 2, ease: "easeOut" },
-          opacity: { duration: 2, ease: "easeOut" }
+          scale: { duration: 30, repeat: Infinity, repeatType: "reverse", ease: "linear" },
+          opacity: { duration: 20, repeat: Infinity, times: [0, 0.02, 0.04, 0.06, 0.08, 0.1, 0.5, 1], ease: "easeInOut" },
+          filter: { duration: 20, repeat: Infinity, times: [0, 0.02, 0.04, 0.06, 0.08, 0.1, 0.5, 1], ease: "easeInOut" }
         }}
       ></motion.div>
       <div className="absolute inset-0 z-0 bg-gradient-to-b from-black/20 via-black/70 to-black"></div>
@@ -70,29 +81,61 @@ export function Hero() {
            initial={{ opacity: 0, y: 50 }}
            animate={{ opacity: 1, y: 0 }}
            transition={{ duration: 1.2, ease: "easeOut" }}
-           className="w-[200px] h-[250px] md:w-[250px] md:h-[320px] flex-shrink-0 relative group mt-8 md:mt-0 cursor-move z-50 shadow-2xl resize overflow-hidden"
+           className="w-[280px] h-[280px] md:w-[380px] md:h-[380px] flex-shrink-0 relative group mt-8 md:mt-0 cursor-move z-50 rounded-full"
            style={{ touchAction: 'none' }}
         >
-          <div className="block w-full h-full relative cursor-pointer group" onDragStart={(e) => e.preventDefault()}>
+          {/* Animated Glow / Organic background blob */}
+          <motion.div 
+            animate={{ 
+              rotate: [0, 90, 180, 270, 360],
+              borderRadius: [
+                "60% 40% 30% 70% / 60% 30% 70% 40%",
+                "30% 60% 70% 40% / 50% 60% 30% 60%",
+                "60% 40% 30% 70% / 60% 30% 70% 40%"
+              ]
+            }}
+            transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+            className="absolute -inset-4 md:-inset-6 border border-orange-500/30 z-0 bg-orange-500/5 shadow-[0_0_40px_rgba(249,115,22,0.15)] group-hover:border-orange-500/50 group-hover:shadow-[0_0_60px_rgba(249,115,22,0.25)] transition-all duration-700"
+          />
+
+          <div className="block w-full h-full relative cursor-pointer group z-10" onDragStart={(e) => e.preventDefault()}>
             <motion.div 
-              className="w-full h-full overflow-hidden bg-gray-900 relative z-10"
+              className="w-full h-full overflow-hidden relative z-10"
               initial={{ clipPath: 'inset(100% 0 0 0)' }}
               animate={{ clipPath: 'inset(0 0 0 0)' }}
               transition={{ duration: 1.5, ease: [0.77, 0, 0.175, 1], delay: 0.2 }}
             >
-              <motion.img 
-                initial={{ scale: 1.1, y: -20 }}
-                animate={{ scale: 1, y: 0 }}
-                transition={{ duration: 1.8, ease: "easeOut", delay: 0.2 }}
-                src="/photo_2026-02-27_22-48-12.jpg" 
-                alt="Abrham Bayelign" 
-                className="w-full h-full object-cover filter grayscale hover:grayscale-0 group-hover:grayscale-0 transition-all duration-700 ease-out hover:scale-[1.02] opacity-90 hover:opacity-100 group-hover:opacity-100" 
-              />
+              <motion.div 
+                className="w-full h-full"
+                animate={{ 
+                  borderRadius: [
+                    "50% 50% 50% 50% / 50% 50% 50% 50%",
+                    "45% 55% 42% 58% / 55% 45% 58% 42%",
+                    "50% 50% 50% 50% / 50% 50% 50% 50%"
+                  ]
+                }}
+                transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+                style={{
+                  WebkitMaskImage: 'radial-gradient(circle at center 30%, black 40%, transparent 80%)',
+                  maskImage: 'radial-gradient(circle at center 30%, black 40%, transparent 80%)'
+                }}
+              >
+                <div className="absolute inset-0 bg-orange-500/20 mix-blend-overlay z-20 group-hover:bg-transparent transition-colors duration-700 pointer-events-none"></div>
+                
+                <motion.img 
+                  initial={{ scale: 1.1, y: -20 }}
+                  animate={{ scale: 1, y: 0 }}
+                  transition={{ duration: 1.8, ease: "easeOut", delay: 0.2 }}
+                  src="/photo_2026-02-27_22-48-12.jpg" 
+                  alt="Abrham Bayelign" 
+                  className="w-full h-full object-cover filter grayscale hover:grayscale-0 group-hover:grayscale-0 transition-all duration-700 ease-out hover:scale-[1.05] opacity-90 hover:opacity-100 group-hover:opacity-100 object-top mix-blend-luminosity hover:mix-blend-normal" 
+                />
+              </motion.div>
             </motion.div>
             
-            {/* Dark text box at the bottom like Zaha website */}
-            <div className="absolute -bottom-4 md:-bottom-6 left-1/2 -translate-x-1/2 w-[90%] bg-black text-white p-3 md:p-4 z-20 transition-transform duration-500 ease-out group-hover:-translate-y-2">
-              <h3 className="font-sans text-sm md:text-base font-medium tracing-wide m-0">Abrham Bayelign</h3>
+            {/* Minimal floating badge */}
+            <div className="absolute bottom-2 right-2 md:bottom-6 md:-right-8 bg-black/80 backdrop-blur-md border border-white/10 text-white p-3 md:p-4 rounded-2xl z-20 transition-all duration-500 ease-out group-hover:-translate-y-2 group-hover:border-orange-500/40 shadow-xl pointer-events-none">
+              <h3 className="font-sans text-sm md:text-base font-medium tracking-wide m-0">Abrham Bayelign</h3>
               <p className="font-sans text-[10px] md:text-xs text-gray-400 mt-1 m-0">Architecture Student at EIABC</p>
             </div>
           </div>
