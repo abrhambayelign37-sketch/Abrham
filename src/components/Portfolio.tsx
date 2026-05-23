@@ -206,7 +206,7 @@ export function Portfolio() {
           viewport={{ once: true }}
           className="text-xs uppercase tracking-[0.2em] text-gray-500 mt-6 md:mt-0"
         >
-          2020 — Present
+          2023 — Present
         </motion.p>
       </div>
 
