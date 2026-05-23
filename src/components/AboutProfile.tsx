@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { projects } from './Portfolio';
 import { useState, useEffect } from 'react';
+import { HamburgerMenu } from './HamburgerMenu';
 
 export function AboutProfile() {
   const [startIndex, setStartIndex] = useState(0);
@@ -27,14 +28,7 @@ export function AboutProfile() {
         <Link to="/" className="text-xl md:text-2xl font-light tracking-tight hover:underline">
           Abrham Bayelign
         </Link>
-        <div className="flex gap-4">
-          <Link to="/" className="bg-black text-white px-4 py-1 text-xs uppercase tracking-wider hover:bg-gray-800">
-            Archive Search
-          </Link>
-          <Link to="/" className="bg-black text-white px-4 py-1 text-xs uppercase tracking-wider hover:bg-gray-800">
-            Studio
-          </Link>
-        </div>
+        <HamburgerMenu />
       </header>
 
       {/* Main Layout */}

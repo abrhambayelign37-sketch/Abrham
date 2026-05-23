@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { projects } from './Portfolio';
 import { ArrowLeft, MapPin, Briefcase } from 'lucide-react';
 import { useEffect } from 'react';
+import { HamburgerMenu } from './HamburgerMenu';
 
 export function ProjectView() {
   const { id } = useParams<{ id: string }>();
@@ -50,7 +51,7 @@ export function ProjectView() {
         <div className="font-display text-xl font-medium tracking-tight text-gray-900">
           {project.title}
         </div>
-        <div className="w-10"></div> {/* Spacer for centering */}
+        <HamburgerMenu />
       </div>
 
       <div className="pt-32 px-6 md:px-12 lg:px-24 max-w-[1600px] mx-auto">
