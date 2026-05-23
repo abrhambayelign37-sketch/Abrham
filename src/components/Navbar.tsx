@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X } from 'lucide-react';
+import { Logo } from './Logo';
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -36,8 +37,8 @@ export function Navbar() {
         }`}
       >
         <div className="max-w-[1600px] mx-auto px-6 md:px-16 lg:px-24 flex justify-between items-center">
-          <a href="#home" className="text-xl font-display font-medium tracking-tight uppercase hover:opacity-75 transition-opacity">
-            A·Bayelign
+          <a href="#home" className="hover:opacity-90 transition-opacity">
+            <Logo />
           </a>
 
           {/* Desktop Nav */}

@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { useNavigate } from 'react-router-dom';
 import { ProjectSearch } from './ProjectSearch';
+import { Logo } from './Logo';
 
 export function Hero() {
   const navigate = useNavigate();
@@ -41,9 +42,12 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           >
-            <h1 className="font-display font-light text-[12vw] md:text-[6vw] leading-[0.9] tracking-tighter uppercase mb-6">
-              Abrham<br />Bayelign
+            <h1 className="font-display font-bold text-[15vw] md:text-[8vw] leading-[0.9] tracking-tighter uppercase mb-2 text-white">
+              BS-FAM
             </h1>
+            <p className="font-sans text-[3vw] md:text-[1.5vw] tracking-[0.3em] text-[#C8102E] font-bold uppercase mb-8 ml-1">
+              Architectural Design
+            </p>
           </motion.div>
 
           <motion.div
@@ -127,7 +131,7 @@ export function Hero() {
             </motion.div>
             
             {/* Minimal floating badge */}
-            <div className="absolute bottom-2 right-2 md:bottom-6 md:-right-8 bg-black/80 backdrop-blur-md border border-white/10 text-white p-3 md:p-4 rounded-2xl z-20 transition-all duration-500 ease-out group-hover:-translate-y-2 group-hover:border-orange-500/40 shadow-xl pointer-events-none">
+            <div className="absolute bottom-2 right-2 md:bottom-6 md:-right-8 bg-black/80 backdrop-blur-md border border-white/10 text-white p-3 md:p-4 rounded-xl md:rounded-2xl z-20 transition-all duration-500 ease-out group-hover:-translate-y-2 group-hover:border-[#C8102E]/50 shadow-xl pointer-events-none flex flex-col justify-center">
               <h3 className="font-sans text-sm md:text-base font-medium tracking-wide m-0">Abrham Bayelign</h3>
               <p className="font-sans text-[10px] md:text-xs text-gray-400 mt-1 m-0">Architecture Student at EIABC</p>
             </div>

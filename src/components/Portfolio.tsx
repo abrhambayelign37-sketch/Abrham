@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Maximize2, X, ChevronLeft, ChevronRight, MapPin, Briefcase } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, MapPin, Briefcase } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 export const projects = [
   {
@@ -141,6 +142,7 @@ import { createPortal } from 'react-dom';
 
 export function Portfolio() {
   const [lightbox, setLightbox] = useState<{ pId: number, iId: number } | null>(null);
+  const navigate = useNavigate();
 
   // Handle keyboard navigation for lightbox
   useEffect(() => {
@@ -156,10 +158,7 @@ export function Portfolio() {
     const handleOpenLightbox = (e: Event) => {
       const customEvent = e as CustomEvent<{ id: string }>;
       const { id } = customEvent.detail;
-      const index = projects.findIndex(p => p.id === id);
-      if (index !== -1) {
-        setLightbox({ pId: index, iId: 0 });
-      }
+      navigate('/project/' + id);
     };
     window.addEventListener('openProjectLightbox', handleOpenLightbox);
 
@@ -235,21 +234,11 @@ export function Portfolio() {
                   referrerPolicy="no-referrer"
                 />
                 
-                {/* Maximize Button overlay */}
-                <button 
-                  onClick={() => setLightbox({ pId: index, iId: 0 })}
-                  className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  aria-label="View gallery"
-                >
-                  <div className="bg-white text-black p-4 rounded-full transform scale-75 group-hover:scale-100 transition-transform duration-500 ease-out flex items-center space-x-2">
-                    <Maximize2 size={24} strokeWidth={1.5} />
-                    {project.images.length > 1 && (
-                      <span className="font-sans text-xs font-semibold uppercase tracking-widest pl-2 border-l border-black/20">
-                        {project.images.length} Images
-                      </span>
-                    )}
-                  </div>
-                </button>
+                <div 
+                  onClick={() => navigate('/project/' + project.id)}
+                  className="absolute inset-0 cursor-pointer"
+                  aria-label="View Project"
+                />
               </div>
               
               {/* Metadata below the image */}

@@ -14,6 +14,7 @@ import { Inspirations } from './components/Inspirations';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { AboutProfile } from './components/AboutProfile';
+import { ProjectView } from './components/ProjectView';
 import { motion, AnimatePresence } from 'motion/react';
 
 function HomePage() {
@@ -80,6 +81,7 @@ export default function App() {
             <Routes location={location} key={location.pathname}>
               <Route path="/" element={<HomePage />} />
               <Route path="/about" element={<AboutProfile />} />
+              <Route path="/project/:id" element={<ProjectView />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </motion.div>
